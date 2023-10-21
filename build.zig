@@ -6,7 +6,7 @@ pub fn build(b: *Build) void {
     _ = b;
 }
 
-pub fn installHeaders(
+pub fn installHeader(
     b: *Build,
     compile: *Build.Step.Compile,
     source: Build.LazyPath,
