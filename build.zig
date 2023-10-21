@@ -2,6 +2,10 @@ const std = @import("std");
 
 const Build = std.Build;
 
+pub fn build(b: *Build) void {
+    _ = b;
+}
+
 pub fn installHeaders(
     b: *Build,
     compile: *Build.Step.Compile,
