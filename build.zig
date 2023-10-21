@@ -17,3 +17,14 @@ pub fn installHeaders(
     b.getInstallStep().dependOn(&install_file.step);
     compile.installed_headers.append(&install_file.step) catch @panic("OOM");
 }
+
+pub fn getInstallRelativePath(
+    b: *Build,
+    other: *Build.Step.Compile,
+    to: []const u8,
+) Build.LazyPath {
+    const generated = b.allocator.create(Build.GeneratedFile) catch @panic("OOM");
+    generated.step = &other.step;
+    generated.path = b.pathJoin(&.{ other.step.owner.install_path, to });
+    return .{ .generated = generated };
+}
